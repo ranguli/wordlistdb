@@ -6,8 +6,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/joho/godotenv"
-
 	"github.com/ranguli/wordlistdb/internal/pkg/file"
 	"github.com/ranguli/wordlistdb/internal/wordlistdb"
 )
@@ -17,10 +15,6 @@ var subcommandUsage = map[string]string{}
 const DefaultDatabaseName = "wordlistdb-data"
 
 func main() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Could not load .env file.")
-	}
 
 	subcommandUsage["ingest"] = "Add a new wordlist into the database"
 	ingestCmd := flag.NewFlagSet("ingest", flag.ExitOnError)

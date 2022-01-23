@@ -2,10 +2,7 @@ module github.com/ranguli/wordlistdb
 
 go 1.17
 
-require (
-	github.com/cockroachdb/pebble v0.0.0-20220121171514-176f9fbf0e97
-	github.com/joho/godotenv v1.4.0
-)
+require github.com/cockroachdb/pebble v0.0.0-20220121171514-176f9fbf0e97
 
 require (
 	github.com/DataDog/zstd v1.4.5 // indirect
