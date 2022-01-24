@@ -1,4 +1,4 @@
-package password
+package wordlistdb
 
 import (
 	"crypto/md5"
@@ -36,6 +36,19 @@ func AddPassword(client *pebble.DB, batch *pebble.Batch, password string) error 
 
 	for i := range hashes {
 		if err := batch.Set([]byte(hashes[i]), []byte(password), pebble.Sync); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func GetPassword(client *pebble.DB, password string) error {
+	hashes := [3]string{getSHA256Sum(password), getSHA1Sum(password), getMD5Sum(password)}
+
+	for i := range hashes {
+		_, _, err := client.Get([]byte(hashes[i]))
+		if err != nil {
 			return err
 		}
 	}
